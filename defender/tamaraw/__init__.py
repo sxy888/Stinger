@@ -1,0 +1,1 @@
+from .tamaraw import TamarawDefender

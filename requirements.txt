@@ -1,0 +1,12 @@
+keras==2.2.4
+scikit-learn==1.0.2
+matplotlib==3.5.3
+tensorflow-gpu==1.15
+h5py==2.10.0
+# for website ui
+streamlit
+sqlalchemy
+# some tool requirements
+coloredlogs
+rich
+tqdm

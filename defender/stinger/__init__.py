@@ -1,0 +1,1 @@
+from .stinger import StingerDefender

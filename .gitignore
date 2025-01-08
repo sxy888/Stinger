@@ -1,0 +1,12 @@
+.vscode
+*.pyc
+*.log
+*.png
+*.pdf
+__pycache__/
+data/
+results/
+
+nohup.out
+data.tar
+config.ini
