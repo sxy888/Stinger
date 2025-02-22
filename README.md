@@ -1,72 +1,35 @@
-<link rel="stylesheet" href="custom.css">
+## Introduction
 
-## Appendix
-
-Stinger works relying on assumptions: (i) attackers’ training sets are defended by Stinger and (ii) surrogate and target models share vulnerabilities. This section studies the impacts of the assumptions via measuring Stinger’s SDR on raw traces, and evaluating Stinger’s SDR cross various surrogate models.
-
-*A.Impact of training sets*
-
-Stinger works relying on assumptions: (i) attackers’ training sets are defended by Stinger and (ii) surrogate and target models share vulnerabilities. This section studies the impacts of the assumptions via measuring Stinger’s SDR on raw traces, and evaluating Stinger’s SDR cross various surrogate models.
-
-One key assumption for applying Stinger is that adversaries train WF classifiers on the Stinger-defended traces. As a result, the WF classifiers over-fit on P sequences and further fail to fingerprint victims’ websites. This assumption requires deploying Stinger on all Tor clients and middle nodes, thereby preventing adversaries from accessing the raw traces. In practice, however, adversaries can still access raw traces by (i) refusing to update their Tor clients to the Stinger-defended version or (ii) disabling Stinger once their client updates. Hence, we evaluate Stinger’s performance when adversaries can collect raw traces. The experimental setups are as follows. We train WF attacks on raw traces (DF and AWF) and evaluate their accuracy on Stinger-defended traces. Stinger’s SDR over undefended training sets can then be determined according to Eq. 14. The evaluations are presented in Fig. 10.
-
-<figure style="text-align: center;">
-  <img src="https://obsidian-tencent-1259097531.cos.ap-nanjing.myqcloud.com/Snipaste_2025-02-10_22-23-41.png" alt="defense performance" style="max-width: 100%;">
-</figure>
-
-**Fig.10 Stinger’s defense performance on undefended training datasets. Stinger and Stinger-Plus differ in bandwidth overheads: Stinger employs the default overhead (l=128), while Stinger-Plus uses doubled overhead (l=256).**
+This repository contains the implementations of Stinger and its competitors. Stringer is a novel data poisoning based WF defense, which enables effective defense against WF attacks with low bandwidth overhead and only maintains one generator for all websites. Its overall achitecture is depected as follows.
 
 
-***Finding:*** <span class="underline">Stinger achieves comparable defense performance to its competitors on undefended training datasets.</span> On DF, the competitors’ average against six selected attacks is 61.20%, 43.37%, 70.14%, 53.82%, 45.77%, and 57.42%, respectively. In comparison, Stinger achieves SDRs of 88.04%, 49.34%, 86.37%, 69.33%, 34.29% and 77.66%, which are slightly higher than the competitors’ average. On AWF, Stinger similarly outperforms the competing defenses. This demonstrates that Stinger can work on undefended training sets and even slightly outperform existing defenses, which can be explained by adversarial examples. Adversarial examples are commonly observed in machine learning [42]– [45] due to model-related reasons [46]–[48] and data-related reasons [49]–[51]. The latter type is model-independent, such as perturbations in data distribution, data subspace, and data features. Obviously, Stinger generates model-related adversarial examples, as adversaries learn overfitted/poisoned models on Stinger-defended traces. Additionally, finding from Fig. 10 demonstrates that Stinger can also generated data-related adversarial examples since it can defend against WF attacks on undefended traces. In particular, like its camouflage-based counterparts, Stinger inserts dummy packets into raw traces during the deceiving stage, partially obscuring their distinguishing features. This also explains why Stinger-Plus achieves a significant improvement over Stinger. Although Stinger shows comparable performance, we still recommend that the Tor community deploy Stinger across all Tor clients and middle nodes to enhance SDR using fewer overheads.
-
-
-*B.Impact of surrogate models*
-
-Stinger’s performance is inevitably influenced by the choice of surrogate model, as it generates P sequences by exploiting the surrogate model’s vulnerabilities and uses these sequences to compromise target models. To evaluate the impact of the surrogate model, we implement various versions of Stinger, each using a different surrogate model. For each version, we evaluate its SDR against different WF classifiers. Consequently, we obtain confusion matrices between the surrogate models and the WF classifiers, which are shown in Fig. 11.
+<p align="center">
+<img src="https://obsidian-tencent-1259097531.cos.ap-nanjing.myqcloud.com/Snipaste_2025-02-22_21-12-14.png" width="650px"/>
+</p>
 
 
 
-<figure style="text-align: center;">
-  <img src="https://obsidian-tencent-1259097531.cos.ap-nanjing.myqcloud.com/Snipaste_2025-02-10_22-24-50.png" alt="SDR" style="max-width: 100%;">
-</figure>
+## Installation and Usage Hints
+
+Stinger is created, trained and evuluated on Ubuntu 16.04 using Python 3.7.
 
 
-**Fig. 11. Stinger’s SDR cross various surrogate model.**
 
-***Finding:*** <span class="underline">Concept drift is observed when the surrogate model differs from the target classifier.</span> In machine learning, concept drift refers to a decrease in model performance caused by changes in data or the surrogate model. As shown in Fig. 11, Stinger’s SDR decreases when the surrogate model differs from the real WF classifier, indicating there is performance discount when using the surrogate model to represent the WF target classifier. Although concept drift occurs, the reduction in performance is not very large, averaging 6.56% on DF set and 8.68% on AWF set. This demonstrates Stinger’s effectiveness even when the real WF classifier is inaccessible. Moreover, forcing the P model to defend against various types of surrogate classifiers is a promising approach to mitigate concept drift. However, Stinger cannot achieve this goal as it relies on neural surrogate models to compute gradients. This limitation inspires us to explore gradient-independent defenses to improve SDR. Thus exploring the surrogate model gradient-independent method (e.g., reinforcement learning models) is a promising way to further improve Stinger’s practicality against unknown WFs.
-
-
-**Reference：**
-
-[42] S. Han, C. Lin, C. Shen, Q. Wang, and X. Guan, “Interpreting adversarial examples in deep learning: A review,” ACM Comput. Surv., vol. 55, no. 14, 2023. 
-
-[43] A. Serban, E. Poll, and J. Visser, “Adversarial examples on object recognition: A comprehensive survey,” ACM Comput. Surv., vol. 53, no. 3, pp. 1–38, 2020. 
-
-[44] R. R. Wiyatno, A. Xu, O. Dia, and A. De Berker, “Adversarial examples in modern machine learning: A review,” arXiv preprint arXiv:1911.05268, 2019.
-
-[45] J. Zhang and C. Li, “Adversarial examples: Opportunities and challenges,” IEEE trans. on neural netw. and learn. syst., vol. 31, no. 7, pp. 2578–2593, 2019. 
-
-[46] A. Ross and F. Doshi-Velez, “Improving the adversarial robustness and interpretability of deep neural networks by regularizing their input gradients,” in Proc. the AAAI conf. on artif. intell., vol. 32, no. 1, 2018. 
-
-[47] K. Nar, O. Ocal, S. S. Sastry, and K. Ramchandran, “Cross-entropy loss and low-rank features have responsibility for adversarial examples,” arXiv preprint arXiv:1901.08360, 2019. 
-
-[48] A. Ross and F. Doshi-Velez, “Improving the adversarial robustness and interpretability of deep neural networks by regularizing their input gradients,” in Proc. the AAAI conf. on artif. intell., vol. 32, no. 1, 2018. 
-
-[49] C.-J. Simon-Gabriel, Y. Ollivier, L. Bottou, B. Scholkopf, and D. Lopez- ¨ Paz, “First-order adversarial vulnerability of neural networks and input dimension,” in Proc. Int. conf. on mach. learn. (ICML), 2019, pp. 5809– 5817. 
-
-[50] K. Grosse, P. Manoharan, N. Papernot, M. Backes, and P. McDaniel, “On the (statistical) detection of adversarial examples,” arXiv preprint arXiv:1702.06280, 2017.
-
-[51] D. Diochnos, S. Mahloujifar, and M. Mahmoody, “Adversarial risk and robustness: General definitions and implications for the uniform distribution,” Proc. Advances in Neural Inf. Process. Syst., 2018.
-
-## Run Program
-
-environment: python3.7 + GPU (nvidia driver、cuda 10.0、cudnn 7.6.0) 
+## WF Defense  Reproducibility
 
 
-```bash
-# create virtual env
-conda create -n tf1 python=3.7
-conda activate tf1
+### Stinger
+
+**Create a conda environment:**
+
+```
+conda create -n wf python=3.7
+conda activate wf
+```
+
+**Install the required packages:**
+
+```
 # install tensorflow-gpu
 pip install tensorflow-gpu==1.15.5
 # config cuda && cudnn 
@@ -78,20 +41,171 @@ conda install pytorch==1.2.0 torchvision==0.4.0 -c pytorch
 pip install -r requirements.txt
 ```
 
-## Config file
+#### Pre-train poison model to generate particular packet sequence
 
-A record is automatically added to the mysql database when running a defense or attack method, so change the configuration in `config.ini` before running it.
+Stinger’s key idea is to guide WF classifiers to over-fit on a particular crafted packet sequence by manipulating training samples (misleading) and disable the overfitted WF classifier by changing that sequence (deceiving)
 
-## Web UI
 
-There is a simple UI interface to show the result after attack/defense and how long it takes to run, the script is in `ui/web_ui.sh`, run or stop by executing the command in the project root directory:
+The screenshot of pretraning poison model:
 
-```bash
-cd {projectRoot}  
-bash ui/web_ui.sh start   
-bash ui/web_ui.sh stop    
-bash ui/web_ui.sh restart 
+
+<p align="center">
+<img src="https://obsidian-tencent-1259097531.cos.ap-nanjing.myqcloud.com/Frame%202.png"/>
+</p>
+
+
+### The usage of the competitors are introduced as follows.
+
+
+#### run_defender.py
+
+Different WF defense algorithms are run to generate the perturbation sequence. Supports the use of different datasets and parameter sets
+
+```
+python run_defender.py stinger -d DF
+python run_defender.py stinger -d AWF
 ```
 
 
 
+#### ui/pages/plot.sh
+
+Polymerization of multiple experimental results， the results are shown as follows:
+
+<figure style="text-align: center;">
+  <img src="https://obsidian-tencent-1259097531.cos.ap-nanjing.myqcloud.com/Snipaste_2025-02-10_22-23-41.png" alt="defense performance" style="max-width: 100%;">
+</figure>
+
+
+#### ui/pages/table.sh
+
+Stinger’s SDR cross various surrogate model:
+
+
+<figure style="text-align: center;">
+  <img src="https://obsidian-tencent-1259097531.cos.ap-nanjing.myqcloud.com/Snipaste_2025-02-10_22-24-50.png" alt="SDR" style="max-width: 100%;">
+</figure>
+
+
+
+### Tamaraw[1]
+
+#### Introduction:
+Tamaraw forces the client and server to send packets at fixed intervals to mask timing patterns. 
+
+#### Usage:
+```
+python run_defender.py tamaraw -d DF -i 0.024 -o 0.08
+```
+
+
+### WTF-PAD[2]
+#### Introduction:
+WTF-PAD  randomizes Tor traces through adaptive padding. 
+
+#### Usage:
+```
+python run_defender.py wtf-pad -d DF -r 1
+```
+
+### FRONT[3]
+#### Introduction:
+FRONT randomizes the number and timing of dummy packets based on the Rayleigh distribution.
+
+#### Usage:
+```
+python run_defender.py front -d DF -c 25 -s 100
+```
+
+### Mockingbird[4]
+#### Introduction:
+Mockingbird  uses gradient descent to approach an original traces to another target. 
+
+#### Usage:
+```
+python run_defender.py mockingbird -d AWF -a 15
+```
+
+### ALERT[5]
+#### Introduction:
+ALERT generates adversarial perturbations without knowing traffic traces, thus can effectively resist adversarial training-aided WF attacks. Its key idea is to produce universal perturbations that vary among users.
+
+#### Usage:
+```
+python run_defender.py alert -d AWF -min 0.89  -max 0.91 
+```
+
+
+## WF Attacks Reproducibility
+
+### CUMUL[6]
+#### Introduction
+CUMUL belongs to statistical-based WFs. It extracts 104 statistical features and uses Support Vector Machine (SVM) with a radial basis kernel to fingerprint websites.
+#### Usage
+```
+python run_attack.py -de $defense -a CUMUL -d $dataset
+```
+
+### DF[7]
+
+#### Introduction
+DF uses deep CNN to fingerprint websites and achieves state-of-the-art performance among deep architecture-based solutions.
+#### Usage
+```
+python run_attack.py -de $defense -a DF -d $dataset
+```
+
+
+### AWF[8]
+#### Introduction
+AWF uses three deep learning-based classifiers on a larger dataset, demonstrating the effectiveness of deep learning-based WF attacks. We selectively implement the SDAE- and CNN-based solutions.
+#### Usage
+```
+python run_attack.py -de $defense -a AWF-SDAE -d $dataset
+python run_attack.py -de $defense -a AWF-CNN -d $dataset
+```
+
+
+### Var-CNN[9]
+#### Introduction
+Var-CNN uses the Resnet-18 network and achieves good performance on limited training data. According to Sanjit et al.,
+#### Usage
+```
+python run_attack.py -de $defense -a Var-CNN -d $dataset
+```
+
+
+### GANDaLF[10]
+#### Introduction
+GANDaLF exploits semi-supervised learning GANs for WFs. 
+#### Usage
+```
+python run_attack.py -de $defense -a GANDaLF -d $dataset
+```
+
+## Disclaimer
+
+This project is still under development and may be missing at the moment. In addition, some paths may require you to modify.
+
+## Reference
+
+
+[1] X. Cai, R. Nithyanand, T. Wang, R. Johnson, and I. Goldberg, “A systematic approach to developing and evaluating website fingerprinting defenses,” in Proc. ACM SIGSAC Conf. Comput. and Commun. Secur., 2014, pp. 227–238.
+
+[2] M. Juarez, M. Imani, M. Perry, C. Diaz, and M. Wright, “Toward an efficient website fingerprinting defense,” in Proc. Eur. Symp. on Res. in Comput. Secur., 2016, pp. 27–46.
+
+[3] J. Gong and T. Wang, “Zero-delay lightweight defenses against website fingerprinting,” in Proc. USENIX Secur. Symp., 2020, pp. 717–734.
+
+[4] M. S. Rahman, M. Imani, N. Mathews, and M. Wright, “Mockingbird: Defending against deep-learning-based website fingerprinting attacks with adversarial traces,” IEEE Trans. Inf. Forensics Secur., vol. 16, pp. 1594–1609, 2021.
+
+[5] L. Qiao, B. Wu, H. Li, C. Gao, W. Yuan, and X. Luo, “Trace-agnostic and adversarial training-resilient website fingerprinting defense,” in IEEE Conf. on Comput. Commun. (INFOCOM), 2024, pp. 211–220.
+
+[6] A. Panchenko, F. Lanze, J. Pennekamp, T. Engel, A. Zinnen, M. Henze, and K. Wehrle, “Website fingerprinting at internet scale,” in Proc. Netw. Distrib. Syst. Secur. Symp., 2016.
+
+[7] P. Sirinam, M. Imani, M. Juarez, and M. Wright, “Deep fingerprinting: Undermining website fingerprinting defenses with deep learning,” in Proc. ACM SIGSAC Conf. Comput. and Commun. Secur., 2018, pp. 1928–1943.
+
+[8] V. Rimmer, D. Preuveneers, M. Ju´arez, T. van Goethem, and W. Joosen, “Automated website fingerprinting through deep learning,” in Proc. Netw. Distrib. Syst. Secur. Symp., 2018.
+
+[9] S. Bhat, D. Lu, A. Kwon, and S. Devadas, “Var-cnn: A data-efficient website fingerprinting attack based on deep learning,” Proc. Privacy. Enhancing Technol., vol. 1, no. 4, pp. 292–310, 2019.
+
+[10] S. E. Oh, N. Mathews, M. S. Rahman, M. Wright, and N. Hopper, “Gandalf: GAN for data-limited fingerprinting,” Proc. Privacy. Enhancing Technol., vol.2021, no. 2, pp. 305–322, 2021.
