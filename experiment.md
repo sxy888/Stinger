@@ -29,9 +29,10 @@ Stinger remain fundamentally limited in effectiveness, achieving only approximat
 
 ### roportion of traces defended by other mechanisms is 20%
 
+**Table A: Stinger’s SDR (%) against DF-based adaptive attack （Other defenses 20%）**
 | dataset      | metric| 0    |10% | 20%| 30% |40%| 50%| 60% |70%|80% |
 |-------|-------|-------|-------|-------|-------|-------|-------|-------|-------|-------|
-| DF | $SDR_t$ | --.-- |--.-- |--.-- |--.-- |--.-- |--.-- |--.-- |--.-- |--.-- |
+| DF | $SDR_t$ | 12.73 |15.35 |15.95 |16.45 |28.34 |--.-- |--.-- |--.-- |--.-- |
 | DF | $SDR_i$ | --.-- |--.-- |--.-- |--.-- |--.-- |--.-- |--.-- |--.-- |--.-- |
 | DF | $SDR_o$ | --.-- |--.-- |--.-- |--.-- |--.-- |--.-- |--.-- |--.-- |--.-- |
 | AWF| $SDR_t$ | --.-- |--.-- |--.-- |--.-- |--.-- |--.-- |--.-- |--.-- |--.-- |
