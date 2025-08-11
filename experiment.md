@@ -1,15 +1,9 @@
 ## Performance against Adaptive attacks
 
 
-### roportion of traces defended by other mechanisms is 10%
-Stinger operates under strong assumptions that adversaries are
-unaware of its existence and train their website fingerprinting classifiers solely on Stinger-defended traces. However, this approach may be vulnerable to adaptive attacks where adversaries recognize Stinger’s deployment and subsequently modify their classifiers to
-counteract the data poisoning effects. To address this concern, we evaluate Stinger’s robustness under such adaptive attack scenarios by considering the following two cases.
-
-In the first case, we consider a scenario where the adversary circumvents Stinger’s deployment (e.g., by refusing to update the Tor client) and consequently collects raw traffic traces as training data. Even under this adversarial condition, Stinger maintains defense performance comparable to state-of-the-art alternatives while achieving significantly higher bandwidth efficiency. This resilience stems from Stinger’s ability to generate model-specific adversarial examples that remain effective even when the website fingerprinting classifier is trained on trigger-free data. 
-Detailed experimental configurations and comprehensive result analyses can be found in the Response 3 to Reviewer-1.
-
-In the second scenario, as suggested by the reviewer, we consider an adversary capable of collecting a mixed dataset comprising raw traces, Stinger -defended traces, and traces defended by other methods. The WF classifier is then trained on this composite dataset. Specifically, we increase the percentage of Stinger -defended traces from 0% to 90% in 10% increments, with a corresponding inverse decrease in the proportion of raw traces from 90% to 0%. When the adversary is aware of Stinger’s deployment, a common adaptive attack involves collecting Stinger -defended traces from multiple users and training the WF classifier on such data to compromise the defense. To simulate this scenario, we generate Stinger -defended traces using 10 different secrets, each representing a distinct user. Furthermore, we maintain a fixed proportion (10%) of traces defended by other mechanisms. This fixed proportion is justified because (i) Stinger’s trigger-based mechanism operates independently of other defenses, minimizing their impact, and (ii) exhaustively varying all components would produce 2,000 combinations, making this approach impractical given the current limitations of time and space (≤16 pages). DF is selected as the base model for adaptive attack due to its strongest performance. The current findings are presented in Table A. We commit to completing this extended analysis post-submission.
+### Setups
+Stinger operates under strong assumptions that adversaries are unaware of its existence and train their website fingerprinting classifiers solely on Stinger-defended traces. However, this approach may be vulnerable to adaptive attacks where adversaries recognize Stinger’s deployment and subsequently modify their classifiers to
+counteract the data poisoning effects. To address this concern, we evaluate Stinger’s robustness under such adaptive attack scenarios. We consider an adversary capable of collecting a mixed dataset comprising raw traces, Stinger -defended traces, and traces defended by other methods. The WF classifier is then trained on this composite dataset. Specifically, we increase the percentage of Stinger -defended traces from 0% to 90% in 10% increments, with a corresponding inverse decrease in the proportion of raw traces from 90% to 0%. When the adversary is aware of Stinger’s deployment, a common adaptive attack involves collecting Stinger -defended traces from multiple users and training the WF classifier on such data to compromise the defense. To simulate this scenario, we generate Stinger -defended traces using 10 different secrets, each representing a distinct user. DF is selected as the base model for adaptive attack due to its strongest performance. The current findings are presented in Table A. We commit to completing this extended analysis post-submission.
 
 
 The overall SDR (denoted by SDRo) of a specific defense is defined as 1−ACCo, where ACCo is the WF’s generalized accuracy on the defended and unseen traces. Here defended means the traces are transformed by that specific defense, and unseen indicates that the traces are not present in the training set. Furthermore, the overall SDR is composed of two parts: training SDR (denoted by SDRt) and inferencing SDR (denoted by SDRi). Here training SDR is derived from the limitation of WF classifiers, which commonly cannot achieve perfect accuracy (100%) during the training phase. In particular, SDRt is defined as 1 − ACCt
@@ -20,6 +14,9 @@ $$SDR_i = SDR_o - SDR_t$$
 
 where SDRo and SDRt
 is computed on the unseen and the seen Stinger-defended traces.
+
+### Proportion of traces defended by other mechanisms is 10%
+
 
 **Table A: Stinger’s SDR (%) against DF-based adaptive attack （Other defenses 10%）**
 
