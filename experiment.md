@@ -1,3 +1,5 @@
+# WELCOME TO THE EXTRA STINGER EVALUATION
+
 ## Performance against Adaptive attacks
 
 
@@ -27,9 +29,9 @@ As shown in the above table, the training SDR demonstrates a near-linear correla
 two competing factors produces a characteristic non-monotonic trend in the overall SDR, that is, an initial decline is followed by a period of relative stability, culminating in a subsequent increase. Our experimental results demonstrate that adaptive attacks against
 Stinger remain fundamentally limited in effectiveness, achieving only approximately 50%, which is significantly smaller than these of the existing WF classifiers trained on raw traces (≥ 90%) and may fail to provide much meaningful information for adversaries.
 
-### roportion of traces defended by other mechanisms is 20%
+### Proportion of traces defended by other mechanisms is 20%
 
-**Table A: Stinger’s SDR (%) against DF-based adaptive attack （Other defenses 20%）**
+**Table B: Stinger’s SDR (%) against DF-based adaptive attack （Other defenses 20%）**
 | dataset      | metric| 0    |10% | 20%| 30% |40%| 50%| 60% |70%|80% |
 |-------|-------|-------|-------|-------|-------|-------|-------|-------|-------|-------|
 | DF | $SDR_t$ | 12.73 |15.35 |15.95 |16.45 |28.34 |--.-- |--.-- |--.-- |--.-- |
