@@ -1,5 +1,7 @@
 ## Performance against Adaptive attacks
 
+
+### roportion of traces defended by other mechanisms is 10%
 Stinger operates under strong assumptions that adversaries are
 unaware of its existence and train their website fingerprinting classifiers solely on Stinger-defended traces. However, this approach may be vulnerable to adaptive attacks where adversaries recognize Stinger’s deployment and subsequently modify their classifiers to
 counteract the data poisoning effects. To address this concern, we evaluate Stinger’s robustness under such adaptive attack scenarios by considering the following two cases.
@@ -27,3 +29,15 @@ is computed on the unseen and the seen Stinger-defended traces.
 As shown in the above table, the training SDR demonstrates a near-linear correlation with the increasing ratio of Stinger -defended traces. This relationship indicates that as more mixed Stinger -defended traces are introduced, the WF classifier experiences greater difficulty in model convergence, leading to progressively degraded validation accuracy. Concurrently, the inferencing SDR significantly decreases as Stinger-defended traces constitute a larger proportion of the training data, suggesting a gradual weakening of the Stinger’s secret based defensive efficacy. This is because WF classifiers are more robust to secret changes when the they are exposed to higher volumes of defended traces. The interplay of these
 two competing factors produces a characteristic non-monotonic trend in the overall SDR, that is, an initial decline is followed by a period of relative stability, culminating in a subsequent increase. Our experimental results demonstrate that adaptive attacks against
 Stinger remain fundamentally limited in effectiveness, achieving only approximately 50%, which is significantly smaller than these of the existing WF classifiers trained on raw traces (≥ 90%) and may fail to provide much meaningful information for adversaries.
+
+### roportion of traces defended by other mechanisms is 20%
+
+| dataset      | metric| 0    |10% | 20%| 30% |40%| 50%| 60% |70%|80% |
+|-------|-------|-------|-------|-------|-------|-------|-------|-------|-------|-------|
+| DF | $SDR_t$ | --.-- |--.-- |--.-- |--.-- |--.-- |--.-- |--.-- |--.-- |--.-- |
+| DF | $SDR_i$ | --.-- |--.-- |--.-- |--.-- |--.-- |--.-- |--.-- |--.-- |--.-- |
+| DF | $SDR_o$ | --.-- |--.-- |--.-- |--.-- |--.-- |--.-- |--.-- |--.-- |--.-- |
+| AWF| $SDR_t$ | --.-- |--.-- |--.-- |--.-- |--.-- |--.-- |--.-- |--.-- |--.-- |
+| AWF| $SDR_i$ | --.-- |--.-- |--.-- |--.-- |--.-- |--.-- |--.-- |--.-- |--.-- |
+| AWF| $SDR_t$ | --.-- |--.-- |--.-- |--.-- |--.-- |--.-- |--.-- |--.-- |--.-- |
+
