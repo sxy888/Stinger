@@ -32,20 +32,20 @@ Stinger remain fundamentally limited in effectiveness, achieving only approximat
 ### Proportion of traces defended by other mechanisms is 20%
 
 **Table B: Stinger’s SDR (%) against DF-based adaptive attack （Other defenses 20%）**
-| dataset      | metric| 0    |10% | 20%| 30% |40%| 50%| 60% |70%|80% |
-|-------|-------|-------|-------|-------|-------|-------|-------|-------|-------|-------|
+| dataset | metric  | 0     |10%    | 20%   | 30%   |40%    | 50%   | 60%   |70%    |80%    |
+|---------|---------|-------|-------|-------|-------|-------|-------|-------|-------|-------|
 | DF      | $SDR_t$ | 12.73 | 15.35 | 15.95 | 16.45 | 28.34 | 30.89 | 34.73 | 38.78 | 48.78 |
-| DF      | $SDR_i$ | 49.70 | 38.76 | 37.34 | 38.13 | 22.87 | 26.24 | 22.34 | 16.83 | 9.82 |
+| DF      | $SDR_i$ | 49.70 | 38.76 | 37.34 | 38.13 | 22.87 | 26.24 | 22.34 | 16.83 | 9.82  |
 | DF      | $SDR_o$ | 62.43 | 54.11 | 53.29 | 54.58 | 51.21 | 57.13 | 57.07 | 55.61 | 58.60 |
 | AWF     | $SDR_t$ | 12.06 | 14.75 | 17.37 | 19.43 | 20.16 | 23.82 | 25.47 | 35.83 | 49.36 |
-| AWF     | $SDR_i$ | 43.50 | 33.92 | 31.62 | 30.42 | 32.81 | 27.90 | 30.42 | 23.73 | 9.87 |
+| AWF     | $SDR_i$ | 43.50 | 33.92 | 31.62 | 30.42 | 32.81 | 27.90 | 30.42 | 23.73 | 9.87  |
 | AWF     | $SDR_o$ | 55.56 | 48.67 | 48.99 | 49.85 | 52.97 | 51.72 | 55.89 | 59.56 | 59.23 |
 
 ### Proportion of traces defended by other mechanisms is 30%
 
 **Table B: Stinger’s SDR (%) against DF-based adaptive attack （Other defenses 30%）**
-| dataset      | metric| 0    |10% | 20%| 30% |40%| 50%| 60% |70%|
-|-------|-------|-------|-------|-------|-------|-------|-------|-------|-------|
+| dataset | metric  | 0     |10%    | 20%   | 30%   |40%    | 50%   | 60%   |70%    |
+|---------|---------|-------|-------|-------|-------|-------|-------|-------|-------|
 | DF      | $SDR_t$ | 23.57 | 22.17 | 25.87 | 28.61 | 32.92 | 34.31 | 39.73 | 43.78 |
 | DF      | $SDR_i$ | 34.72 | 28.10 | 25.65 | 21.54 | 25.00 | 19.22 | 16.08 | 12.36 |
 | DF      | $SDR_o$ | 58.29 | 50.27 | 51.52 | 50.15 | 57.92 | 53.53 | 55.81 | 56.14 |
@@ -58,10 +58,10 @@ Stinger remain fundamentally limited in effectiveness, achieving only approximat
 ### Proportion of traces defended by other mechanisms is 40%
 
 **Table C: Stinger’s SDR (%) against DF-based adaptive attack （Other defenses 40%）**
-| dataset | metric | 0%    | 10%   | 20%   | 30%   | 40%   | 50%   | 60%   |
-|---------|--------|-------|-------|-------|-------|-------|-------|-------|
+| dataset | metric | 0%    | 10%   | 20%   | 30%   | 40%   | 50%   | 60%    |
+|---------|--------|-------|-------|-------|-------|-------|-------|--------|
 | DF      | $SDR_t$ | 24.26 | 25.89 | 27.12 | 37.87 | 40.51 | 44.35 | 48.00 |
-| DF      | $SDR_i$ | 36.89 | 37.58 | 29.94 | 13.55 | 12.42 | 15.46 | 6.63 |
+| DF      | $SDR_i$ | 36.89 | 37.58 | 29.94 | 13.55 | 12.42 | 15.46 | 6.63  |
 | DF      | $SDR_o$ | 61.15 | 63.47 | 57.06 | 51.42 | 52.93 | 59.81 | 54.63 |
 | AWF     | $SDR_t$ | 25.73 | 27.91 | 30.70 | 38.85 | 42.49 | 46.35 | 48.25 |
 | AWF     | $SDR_i$ | 32.27 | 31.08 | 29.15 | 22.37 | 18.30 | 14.39 | 12.13 |
@@ -72,11 +72,67 @@ Stinger remain fundamentally limited in effectiveness, achieving only approximat
 ### Proportion of traces defended by other mechanisms is 50%
 
 **Table D: Stinger’s SDR (%) against DF-based adaptive attack （Other defenses 50%）**
-| dataset      | metric| 0    |10% | 20%| 30% |40%| 50%| 
-|-------|-------|-------|-------|-------|-------|-------|-------|
-| DF | $SDR_t$ | --.-- |--.-- |--.-- |--.-- |--.-- |--.-- |--.-- |
-| DF | $SDR_i$ | --.-- |--.-- |--.-- |--.-- |--.-- |--.-- |--.-- |
-| DF | $SDR_o$ | --.-- |--.-- |--.-- |--.-- |--.-- |--.-- |--.-- |
-| AWF| $SDR_t$ | --.-- |--.-- |--.-- |--.-- |--.-- |--.-- |--.-- |
-| AWF| $SDR_i$ | --.-- |--.-- |--.-- |--.-- |--.-- |--.-- |--.-- |
-| AWF| $SDR_t$ | --.-- |--.-- |--.-- |--.-- |--.-- |--.-- |--.-- |
+| dataset | metric  | 0     |10%    | 20%   | 30%   |40%    | 50%   | 
+|---------|---------|-------|-------|-------|-------|-------|-------|
+| DF      | $SDR_t$ | 28.80 | 29.87 | 32.45 | 34.25 | 38.85 | 40.76 |
+| DF      | $SDR_i$ | 45.62 | 32.37 | 25.23 | 17.23 | 6.95  | 5.98  |
+| DF      | $SDR_o$ | 74.42 | 62.24 | 57.68 | 51.48 | 45.80 | 46.74 |
+| AWF     | $SDR_t$ | 23.62 | 25.42 | 28.25 | 32.23 | 37.67 | 42.55 |
+| AWF     | $SDR_i$ | 44.61 | 33.85 | 23.17 | 22.87 | 14.53 | 9.37  |
+| AWF     | $SDR_o$ | 68.23 | 59.27 | 51.42 | 55.10 | 52.20 | 51.92 |
+
+
+### Proportion of traces defended by other mechanisms is 60%
+
+**Table E: Stinger’s SDR (%) against DF-based adaptive attack （Other defenses 60%）**
+
+ dataset  | metric  | 0%    | 10%   | 20%   | 30%   | 40%   |
+|---------|---------|-------|-------|-------|-------|-------|
+| DF      | $SDR_t$ | 30.13 | 34.57 | 36.60 | 38.57 | 42.67 |
+| DF      | $SDR_i$ | 42.19 | 27.58 | 22.67 | 14.65 | 13.66 |
+| DF      | $SDR_o$ | 72.32 | 62.15 | 59.27 | 53.22 | 56.33 |
+| AWF     | $SDR_t$ | 33.76 | 36.87 | 40.37 | 43.58 | 47.86 |
+| AWF     | $SDR_i$ | 38.89 | 26.09 | 23.57 | 11.67 | 5.83  |
+| AWF     | $SDR_o$ | 72.65 | 62.96 | 63.94 | 55.25 | 53.69 |
+
+
+### Proportion of traces defended by other mechanisms is 70%
+
+**Table F: Stinger’s SDR (%) against DF-based adaptive attack （Other defenses 70%）**
+| dataset | metric | 0%     | 10%   | 20%   | 30%   |
+|---------|---------|-------|-------|-------|-------|
+| DF      | $SDR_t$ | 31.72 | 38.98 | 43.91 | 48.85 |
+| DF      | $SDR_i$ | 42.26 | 25.58 | 15.85 | 9.10  |
+| DF      | $SDR_o$ | 73.98 | 64.56 | 59.76 | 57.95 |
+| AWF     | $SDR_t$ | 32.50 | 40.24 | 45.44 | 52.26 |
+| AWF     | $SDR_i$ | 42.92 | 26.57 | 13.67 | 6.02  |
+| AWF     | $SDR_o$ | 75.42 | 66.81 | 59.11 | 58.28 |
+
+
+
+### Proportion of traces defended by other mechanisms is 80%
+
+**Table G: Stinger’s SDR (%) against DF-based adaptive attack （Other defenses 80%）**
+| dataset | metric  | 0%    | 10%   | 20%   |
+|---------|---------|-------|-------|-------|
+| DF      | $SDR_t$ | 31.38 | 37.56 | 45.68 |
+| DF      | $SDR_i$ | 43.87 | 27.19 | 17.47 |
+| DF      | $SDR_o$ | 75.25 | 64.75 | 63.15 |
+| AWF     | $SDR_t$ | 36.85 | 42.52 | 47.57 |
+| AWF     | $SDR_i$ | 37.29 | 25.83 | 20.60 |
+| AWF     | $SDR_o$ | 74.14 | 68.35 | 68.17 |
+
+
+
+
+### Proportion of traces defended by other mechanisms is 90%
+**Table H: Stinger’s SDR (%) against DF-based adaptive attack （Other defenses 90%）**
+
+| dataset | metric  | 0%    | 10%   |
+|---------|---------|-------|-------|
+| DF      | $SDR_t$ | 39.00 | 43.79 |
+| DF      | $SDR_i$ | 32.08 | 23.23 |
+| DF      | $SDR_o$ | 71.08 | 67.02 |
+| AWF     | $SDR_t$ | 38.29 | 42.89 |
+| AWF     | $SDR_i$ | 37.74 | 18.11 |
+| AWF     | $SDR_o$ | 76.03 | 61.00 |
